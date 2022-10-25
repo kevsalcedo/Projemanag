@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import kesam.learning.projemanag.databinding.ActivityIntroBinding
-import kesam.learning.projemanag.databinding.ActivitySingUpBinding
+import kesam.learning.projemanag.databinding.ActivitySignUpBinding
 
-class SingUpActivity : AppCompatActivity() {
-    private var binding: ActivitySingUpBinding? = null
+
+class SignUpActivity : AppCompatActivity() {
+    private var binding: ActivitySignUpBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySingUpBinding.inflate(layoutInflater)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
@@ -30,7 +31,6 @@ class SingUpActivity : AppCompatActivity() {
 
     }
 
-    // TODO (Step 8: A function for setting up the actionBar.)
     /**
      * A function for actionBar Setup.
      */

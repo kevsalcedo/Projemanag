@@ -33,7 +33,12 @@ class IntroActivity : AppCompatActivity() {
         binding?.tvAppTitleName?.typeface = typeFace
 
         binding?.btnSignUpIntro?.setOnClickListener{
-            val intent = Intent(this@IntroActivity, SingUpActivity::class.java)
+            val intent = Intent(this@IntroActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding?.btnSignInIntro?.setOnClickListener{
+            val intent = Intent(this@IntroActivity, SignInActivity::class.java)
             startActivity(intent)
         }
 
