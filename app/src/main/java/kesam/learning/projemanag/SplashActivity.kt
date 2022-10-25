@@ -16,7 +16,8 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
@@ -32,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
 
         binding?.tvAppName?.typeface = typeFace
 
-        /*
+
         // Here we will launch the Intro Screen after the splash screen using the handler.
         // As using handler the splash screen will disappear after what we give to the handler.
         // Adding the handler to after the a task after some delay.
@@ -45,8 +46,6 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             },
             2500) // Here we pass the delay time in milliSeconds after which the splash activity will disappear.
-
-         */
     }
 
 }
