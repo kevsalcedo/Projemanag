@@ -51,8 +51,7 @@
         android:gravity="center"
         />
 
-    <!--TODO update the button colors from the Intro Activity-->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_sign_in_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,10 +66,9 @@
         android:gravity="center"
         android:paddingTop="@dimen/btn_paddingTopBottom"
         android:paddingBottom="@dimen/btn_paddingTopBottom"
-        android:foreground="?attr/selectableItemBackground"
-        />
+        android:foreground="?attr/selectableItemBackground"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_sign_up_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,7 +83,6 @@
         android:foreground="?attr/selectableItemBackground"
         android:text="@string/sign_up"
         android:textColor="@color/colorAccent"
-        android:textSize="@dimen/btn_text_size"
-        />
+        android:textSize="@dimen/btn_text_size"/>
 
 </LinearLayout>
