@@ -1,21 +1,18 @@
 package kesam.learning.projemanag
 
-import android.content.Intent
-import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import kesam.learning.projemanag.databinding.ActivityIntroBinding
-import kesam.learning.projemanag.databinding.ActivitySplashBinding
+import kesam.learning.projemanag.databinding.ActivitySingUpBinding
 
-class IntroActivity : AppCompatActivity() {
-    private var binding: ActivityIntroBinding? = null
-
+class SingUpActivity : AppCompatActivity() {
+    private var binding: ActivitySingUpBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityIntroBinding.inflate(layoutInflater)
+        binding = ActivitySingUpBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
@@ -29,14 +26,24 @@ class IntroActivity : AppCompatActivity() {
             )
         }
 
-        val typeFace: Typeface = Typeface.createFromAsset(assets,"carbon bl.ttf")
-        binding?.tvAppTitleName?.typeface = typeFace
+        setupActionBar()
 
-        binding?.btnSignUpIntro?.setOnClickListener{
-            val intent = Intent(this@IntroActivity, SingUpActivity::class.java)
-            startActivity(intent)
+    }
+
+    // TODO (Step 8: A function for setting up the actionBar.)
+    /**
+     * A function for actionBar Setup.
+     */
+    private fun setupActionBar() {
+
+        setSupportActionBar(binding?.toolbarSignUpActivity)
+
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24dp)
         }
 
-
+        binding?.toolbarSignUpActivity?.setNavigationOnClickListener { onBackPressed() }
     }
 }
