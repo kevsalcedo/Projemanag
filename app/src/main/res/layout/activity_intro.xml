@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IntroActivity"
+    android:background="@drawable/intro_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="@dimen/intro_screen_title_text_size"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/intro_screen_title_text_marginTop"
+        android:textColor="@color/colorAccent"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_task_image"
+        android:layout_marginTop="@dimen/intro_screen_image_marginTop"
+        android:contentDescription="Image"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/lets_get_started_text_marginTop"
+        android:text="@string/let_s_get_started_text"
+        android:textSize="@dimen/lets_get_started_text_size"
+        android:textColor="@color/primary_text_color"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/intro_text_marginTop"
+        android:textSize="@dimen/intro_text_size"
+        android:textColor="@color/secondary_text_color"
+        android:text="@string/intro_text_description"
+        android:layout_marginEnd="@dimen/intro_text_marginStartEnd"
+        android:layout_marginStart="@dimen/intro_text_marginStartEnd"
+        android:lineSpacingExtra="@dimen/intro_text_line_spacing_extra"
+        android:gravity="center"
+        />
+
+    <!--TODO update the button colors from the Intro Activity-->
+    <Button
+        android:id="@+id/btn_sign_in_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/intro_screen_sign_in_btn_marginTop"
+        android:layout_marginStart="@dimen/btn_marginStartEnd"
+        android:layout_marginEnd="@dimen/btn_marginStartEnd"
+        android:background="@drawable/shape_button_rounded"
+        android:text="@string/sign_in"
+        android:textSize="@dimen/btn_text_size"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:paddingTop="@dimen/btn_paddingTopBottom"
+        android:paddingBottom="@dimen/btn_paddingTopBottom"
+        android:foreground="?attr/selectableItemBackground"
+        />
+
+    <Button
+        android:id="@+id/btn_sign_up_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/intro_screen_sign_up_btn_marginTop"
+        android:layout_marginStart="@dimen/btn_marginStartEnd"
+        android:layout_marginEnd="@dimen/btn_marginStartEnd"
+        android:background="@drawable/white_border_shape_button_rounded"
+        android:gravity="center"
+        android:paddingTop="@dimen/btn_paddingTopBottom"
+        android:paddingBottom="@dimen/btn_paddingTopBottom"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/sign_up"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/btn_text_size"
+        />
+
+</LinearLayout>
