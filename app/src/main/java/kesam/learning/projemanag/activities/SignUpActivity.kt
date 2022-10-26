@@ -1,20 +1,19 @@
-package kesam.learning.projemanag
+package kesam.learning.projemanag.activities
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import kesam.learning.projemanag.R
 import kesam.learning.projemanag.databinding.ActivitySignUpBinding
-import kesam.learning.projemanag.databinding.ActivitySingInBinding
-
-class SignInActivity : AppCompatActivity() {
-    private var binding: ActivitySingInBinding? = null
 
 
+class SignUpActivity : AppCompatActivity() {
+    private var binding: ActivitySignUpBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySingInBinding.inflate(layoutInflater)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
@@ -37,7 +36,7 @@ class SignInActivity : AppCompatActivity() {
      */
     private fun setupActionBar() {
 
-        setSupportActionBar(binding?.toolbarSignInActivity)
+        setSupportActionBar(binding?.toolbarSignUpActivity)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -45,6 +44,6 @@ class SignInActivity : AppCompatActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24dp)
         }
 
-        binding?.toolbarSignInActivity?.setNavigationOnClickListener { onBackPressed() }
+        binding?.toolbarSignUpActivity?.setNavigationOnClickListener { onBackPressed() }
     }
 }

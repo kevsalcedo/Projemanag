@@ -1,4 +1,4 @@
-package kesam.learning.projemanag
+package kesam.learning.projemanag.activities
 
 import android.content.Intent
 import android.graphics.Typeface

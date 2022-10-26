@@ -1,19 +1,20 @@
-package kesam.learning.projemanag
+package kesam.learning.projemanag.activities
 
+import android.content.Intent
+import android.graphics.Typeface
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import kesam.learning.projemanag.databinding.ActivityIntroBinding
-import kesam.learning.projemanag.databinding.ActivitySignUpBinding
 
+class IntroActivity : BaseActivity() {
+    private var binding: ActivityIntroBinding? = null
 
-class SignUpActivity : AppCompatActivity() {
-    private var binding: ActivitySignUpBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
         // This is used to hide the status bar and make the splash screen as a full screen activity.
@@ -27,23 +28,19 @@ class SignUpActivity : AppCompatActivity() {
             )
         }
 
-        setupActionBar()
+        val typeFace: Typeface = Typeface.createFromAsset(assets,"carbon bl.ttf")
+        binding?.tvAppTitleName?.typeface = typeFace
 
-    }
-
-    /**
-     * A function for actionBar Setup.
-     */
-    private fun setupActionBar() {
-
-        setSupportActionBar(binding?.toolbarSignUpActivity)
-
-        val actionBar = supportActionBar
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24dp)
+        binding?.btnSignUpIntro?.setOnClickListener{
+            val intent = Intent(this@IntroActivity, SignUpActivity::class.java)
+            startActivity(intent)
         }
 
-        binding?.toolbarSignUpActivity?.setNavigationOnClickListener { onBackPressed() }
+        binding?.btnSignInIntro?.setOnClickListener{
+            val intent = Intent(this@IntroActivity, SignInActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

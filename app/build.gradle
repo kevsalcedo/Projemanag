@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    // TODO solve libraries mismatch
+    //id 'com.google.gms.google-services'
 }
 
 android {
@@ -44,6 +46,11 @@ dependencies {
 
     //Add the google material library. This library is auto-added when you create a basic activity instead of empty activity
     implementation 'com.google.android.material:material:1.1.0'
+
+    // Firebase Authentication dependency
+    implementation "com.google.firebase:firebase-auth:19.2.0"
+
+    //classpath 'com.google.gms:google-services:4.3.3'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
