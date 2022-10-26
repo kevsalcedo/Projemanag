@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "52463920039",
+    "project_id": "projemanag-1d514",
+    "storage_bucket": "projemanag-1d514.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52463920039:android:3dd6172971794a2bae4c82",
+        "android_client_info": {
+          "package_name": "kesam.learning.projemanag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52463920039-hoas8120tcjp4o3jis3dvf3ng5obmf05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD59JPn3M2O1D9nYN56INW3wJRYG_nCnqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52463920039-hoas8120tcjp4o3jis3dvf3ng5obmf05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

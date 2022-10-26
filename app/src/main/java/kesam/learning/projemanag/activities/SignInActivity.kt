@@ -8,7 +8,7 @@ import android.view.WindowManager
 import kesam.learning.projemanag.R
 import kesam.learning.projemanag.databinding.ActivitySingInBinding
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : BaseActivity() {
     private var binding: ActivitySingInBinding? = null
 
 
