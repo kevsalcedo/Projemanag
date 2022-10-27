@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.google.firebase.FirebaseApp
 import kesam.learning.projemanag.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
@@ -18,6 +19,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+
+        FirebaseApp.initializeApp(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
@@ -46,6 +49,7 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             },
             2500) // Here we pass the delay time in milliSeconds after which the splash activity will disappear.
+
     }
 
 }
