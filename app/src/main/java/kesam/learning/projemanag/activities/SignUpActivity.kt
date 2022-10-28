@@ -36,7 +36,7 @@ class SignUpActivity : BaseActivity() {
 
         setupActionBar()
 
-        // Add a click event to the Sign-Up button and call the registerUser function
+        // Click event to the Sign-Up button and call the registerUser function
         binding?.btnSignUp?.setOnClickListener {
             registerUser()
         }
@@ -108,7 +108,7 @@ class SignUpActivity : BaseActivity() {
                         } else {
                             Toast.makeText(
                                 this@SignUpActivity,
-                                task.exception!!.message,
+                                "Registration failed",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
