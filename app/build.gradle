@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    //Add the google material library. This library is auto-added when you create a basic activity instead of empty activity
+    // Google material library. This library is auto-added when you create a basic activity instead of empty activity
     implementation 'com.google.android.material:material:1.1.0'
 
     // Firebase Authentication dependency
@@ -54,6 +54,9 @@ dependencies {
 
     // Facebook for login
     implementation 'com.facebook.android:facebook-login:latest.release'
+
+    // Firebase Cloud Firestore Dependency
+    implementation 'com.google.firebase:firebase-firestore:21.4.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
