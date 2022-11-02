@@ -72,6 +72,18 @@ class FirestoreClass {
      * A function for getting the user id of current logged user.
      */
     fun getCurrentUserID(): String {
-        return FirebaseAuth.getInstance().currentUser!!.uid
+        // Now is in the val: currentUser
+        //return FirebaseAuth.getInstance().currentUser!!.uid
+
+        // An Instance of currentUser using FirebaseAuth
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        // A variable to assign the currentUserId if it is not null or else it will be blank.
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+
+        return currentUserID
     }
 }

@@ -11,6 +11,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import com.google.firebase.FirebaseApp
 import kesam.learning.projemanag.databinding.ActivitySplashBinding
+import kesam.learning.projemanag.firebase.FirestoreClass
 
 class SplashActivity : AppCompatActivity() {
     private var binding: ActivitySplashBinding? = null
@@ -42,8 +43,19 @@ class SplashActivity : AppCompatActivity() {
         // Adding the handler to after the a task after some delay.
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                // Start the Intro Activity
-                startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
+                // If the user is signed in once and not signed out again from the app. So next time while coming into the app
+                // we will redirect him to MainScreen or else to the Intro Screen as it was before.
+
+                // Get the current user id
+                val currentUserID = FirestoreClass().getCurrentUserID()
+
+                if (currentUserID.isNotEmpty()) {
+                    // Start the Main Activity
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                } else {
+                    // Start the Intro Activity
+                    startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
+                }
 
                 // Call this when your activity is done and should be closed.
                 finish()
