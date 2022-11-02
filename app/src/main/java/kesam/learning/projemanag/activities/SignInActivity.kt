@@ -11,6 +11,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kesam.learning.projemanag.R
 import kesam.learning.projemanag.databinding.ActivitySingInBinding
+import kesam.learning.projemanag.firebase.FirestoreClass
+import kesam.learning.projemanag.models.User
 
 class SignInActivity : BaseActivity() {
     private var binding: ActivitySingInBinding? = null
@@ -70,9 +72,14 @@ class SignInActivity : BaseActivity() {
             // Sign-In using FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-                    hideProgressDialog()
+                    // no needed anymore
+                    // hideProgressDialog()
                     if (task.isSuccessful) {
 
+                        // Calling the FirestoreClass signInUser function to get the data of user from database.
+                        FirestoreClass().signInUser(this@SignInActivity)
+
+                        /*
                         Toast.makeText(
                             this@SignInActivity,
                             "You have successfully signed in.",
@@ -81,6 +88,8 @@ class SignInActivity : BaseActivity() {
 
                         val intent = Intent(this@SignInActivity, MainActivity::class.java)
                         startActivity(intent)
+                         */
+
                     } else {
                         Toast.makeText(
                             this@SignInActivity,
@@ -106,6 +115,17 @@ class SignInActivity : BaseActivity() {
         } else {
             true
         }
+    }
+
+    /**
+     * A function to get the user details from the firestore database after authentication.
+     */
+    fun signInSuccess(user: User) {
+
+        hideProgressDialog()
+
+        startActivity(Intent(this@SignInActivity, MainActivity::class.java))
+        finish()
     }
 
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import kesam.learning.projemanag.activities.SignInActivity
 import kesam.learning.projemanag.activities.SignUpActivity
 import kesam.learning.projemanag.models.User
 import kesam.learning.projemanag.utils.Constants
@@ -34,6 +35,33 @@ class FirestoreClass {
             .addOnFailureListener { e ->
                 Log.e(
                     activity.javaClass.simpleName,
+                    "Error writing document",
+                    e
+                )
+            }
+    }
+
+    /**
+     * A function to SignIn using firebase and get the user details from Firestore Database.
+     */
+    fun signInUser(activity: SignInActivity){
+        mFireStore.collection(Constants.USERS)
+            // Document ID for users fields. Here the document it is the User ID.
+            .document(getCurrentUserID())
+            // Here the userInfo are Field and the SetOption is set to merge. It is for if we wants to merge
+            .get()
+            .addOnSuccessListener { document ->
+                // Here we have received the document snapshot which is converted into the User Data model object.
+                val loggedInUser = document.toObject(User::class.java)
+
+                if(loggedInUser != null)
+                // Here call a function of base activity for transferring the result to it.
+                activity.signInSuccess(loggedInUser)
+
+            }
+            .addOnFailureListener { e ->
+                Log.e(
+                    "SignInUser",
                     "Error writing document",
                     e
                 )
