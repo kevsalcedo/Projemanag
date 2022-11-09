@@ -8,14 +8,18 @@ import android.text.TextUtils
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import kesam.learning.projemanag.R
 import kesam.learning.projemanag.databinding.ActivitySingInBinding
 import kesam.learning.projemanag.firebase.FirestoreClass
 import kesam.learning.projemanag.models.User
+import kesam.learning.projemanag.viewmodels.FirestoreViewModel
 
 class SignInActivity : BaseActivity() {
     private var binding: ActivitySingInBinding? = null
+
+    var firestoreViewModel : FirestoreViewModel? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +40,13 @@ class SignInActivity : BaseActivity() {
 
         setupActionBar()
 
+        firestoreViewModel = ViewModelProvider(this).get(FirestoreViewModel::class.java);
+
         // Click event to the Sign-In button
         binding?.btnSignInUser?.setOnClickListener {
-            signInRegisteredUser()
+            signInRegisteredUserV2()
         }
+
 
     }
 
@@ -102,6 +109,26 @@ class SignInActivity : BaseActivity() {
         }
     }
 
+    private fun signInRegisteredUserV2(){
+        val email: String = binding?.etEmailSignIn?.text.toString().trim{it <= ' '}
+        val password: String = binding?.etPasswordSignIn?.text.toString().trim{it <= ' '}
+
+        if (validateForm(email, password)){
+            // Show the progress dialog.
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            firestoreViewModel?.signInUser(email,password, { user ->
+                signInSuccess(user)
+            },{
+                Toast.makeText(
+                    this@SignInActivity,
+                    "Authentication failed",
+                    Toast.LENGTH_LONG
+                ).show()
+                hideProgressDialog()
+            })
+        }
+    }
     /**
      * A function to validate the entries of a user.
      */
