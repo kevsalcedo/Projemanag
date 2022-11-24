@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable-hdpi/ic_white_color_back_24dp.xml" value="0.138" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable-v24/ic_black_color_back_24dp.xml" value="0.1595" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable-v24/white_border_shape_button_rounded.xml" value="0.1425" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable-xhdpi/nav_header_main_background.xml" value="0.138" />
@@ -10,6 +11,7 @@
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_base.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_intro.xml" value="0.4" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_my_profile.xml" value="0.1" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_sing_in.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_sing_up.xml" value="0.1" />

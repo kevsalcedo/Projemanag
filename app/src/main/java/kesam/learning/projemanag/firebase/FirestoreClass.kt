@@ -1,9 +1,11 @@
 package kesam.learning.projemanag.firebase
 
+import android.app.Activity
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import kesam.learning.projemanag.activities.MainActivity
 import kesam.learning.projemanag.activities.SignInActivity
 import kesam.learning.projemanag.activities.SignUpActivity
 import kesam.learning.projemanag.models.User
@@ -44,7 +46,7 @@ class FirestoreClass {
     /**
      * A function to SignIn using firebase and get the user details from Firestore Database.
      */
-    fun signInUser(activity: SignInActivity){
+    fun signInUser(activity: Activity){
         mFireStore.collection(Constants.USERS)
             // Document ID for users fields. Here the document it is the User ID.
             .document(getCurrentUserID())
@@ -52,14 +54,35 @@ class FirestoreClass {
             .get()
             .addOnSuccessListener { document ->
                 // Here we have received the document snapshot which is converted into the User Data model object.
-                val loggedInUser = document.toObject(User::class.java)
+                val loggedInUser = document.toObject(User::class.java)!!
 
+                // Here call a function of base activity for transferring the result to it.
+                when(activity){
+                    is SignInActivity -> {
+                        activity.signInSuccess(loggedInUser)
+                    }
+                    is MainActivity ->{
+                        activity.updateNavigationUserDetails(loggedInUser)
+                    }
+                }
+
+                /*
                 if(loggedInUser != null)
                 // Here call a function of base activity for transferring the result to it.
                 activity.signInSuccess(loggedInUser)
+                 */
 
             }
             .addOnFailureListener { e ->
+                // Here call a function of base activity for transferring the result to it.
+                when (activity) {
+                    is SignInActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                    is MainActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
                 Log.e(
                     "SignInUser",
                     "Error writing document",
