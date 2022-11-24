@@ -2,7 +2,6 @@ package kesam.learning.projemanag.activities
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowInsets
@@ -77,7 +76,7 @@ class SignInActivity : BaseActivity() {
                     if (task.isSuccessful) {
 
                         // Calling the FirestoreClass signInUser function to get the data of user from database.
-                        FirestoreClass().signInUser(this@SignInActivity)
+                        FirestoreClass().loadUserData(this@SignInActivity)
 
                         /*
                         Toast.makeText(

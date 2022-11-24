@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kesam.learning.projemanag.activities.MainActivity
+import kesam.learning.projemanag.activities.MyProfileActivity
 import kesam.learning.projemanag.activities.SignInActivity
 import kesam.learning.projemanag.activities.SignUpActivity
 import kesam.learning.projemanag.models.User
@@ -46,7 +47,7 @@ class FirestoreClass {
     /**
      * A function to SignIn using firebase and get the user details from Firestore Database.
      */
-    fun signInUser(activity: Activity){
+    fun loadUserData(activity: Activity){
         mFireStore.collection(Constants.USERS)
             // Document ID for users fields. Here the document it is the User ID.
             .document(getCurrentUserID())
@@ -63,6 +64,9 @@ class FirestoreClass {
                     }
                     is MainActivity ->{
                         activity.updateNavigationUserDetails(loggedInUser)
+                    }
+                    is MyProfileActivity ->{
+                        activity.setUserDataInUI(loggedInUser)
                     }
                 }
 

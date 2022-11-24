@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import com.bumptech.glide.Glide
 import kesam.learning.projemanag.R
 import kesam.learning.projemanag.databinding.ActivityMainBinding
 import kesam.learning.projemanag.databinding.ActivityMyProfileBinding
+import kesam.learning.projemanag.firebase.FirestoreClass
+import kesam.learning.projemanag.models.User
 
 class MyProfileActivity : BaseActivity() {
 
@@ -30,6 +33,9 @@ class MyProfileActivity : BaseActivity() {
         }
 
         setupActionBar()
+
+        // Call a function to get the current logged in user details.
+        FirestoreClass().loadUserData(this@MyProfileActivity)
     }
 
     private fun setupActionBar() {
@@ -44,7 +50,26 @@ class MyProfileActivity : BaseActivity() {
 
         binding?.toolbarMyProfileActivity?.setNavigationOnClickListener {
             onBackPressed() }
+    }
 
+    /**
+     * A function to set the existing details in UI.
+     */
+    fun setUserDataInUI(user: User) {
+        binding?.ivUserImage?.let {
+            Glide
+                .with(this@MyProfileActivity)
+                .load(user.image)
+                .centerCrop()
+                .placeholder(R.drawable.ic_user_place_holder)
+                .into(it)
+        }
+
+        binding?.etName?.setText(user.name)
+        binding?.etEmail?.setText(user.email)
+        if (user.mobile != 0L) {
+            binding?.etMobile?.setText(user.mobile.toString())
+        }
     }
 
 
