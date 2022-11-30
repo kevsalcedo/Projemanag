@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="kesam.learning.projemanag">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -19,10 +19,16 @@
         android:theme="@style/Theme.Projemanag"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CreateBoardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="@string/create_board_title"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activities.MyProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="false"

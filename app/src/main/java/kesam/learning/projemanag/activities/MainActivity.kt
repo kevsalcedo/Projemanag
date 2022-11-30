@@ -41,6 +41,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         binding?.navView?.setNavigationItemSelectedListener(this)
 
+        binding?.appBarMainLayout?.fabCreateBoard?.setOnClickListener {
+            val intent = Intent(this, CreateBoardActivity::class.java)
+            startActivity(intent)
+        }
+
         // Get the current logged in user details.
         FirestoreClass().loadUserData(this@MainActivity)
     }
