@@ -6,10 +6,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import kesam.learning.projemanag.activities.MainActivity
-import kesam.learning.projemanag.activities.MyProfileActivity
-import kesam.learning.projemanag.activities.SignInActivity
-import kesam.learning.projemanag.activities.SignUpActivity
+import kesam.learning.projemanag.activities.*
+import kesam.learning.projemanag.models.Board
 import kesam.learning.projemanag.models.User
 import kesam.learning.projemanag.utils.Constants
 
@@ -40,6 +38,25 @@ class FirestoreClass {
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error writing document",
+                    e
+                )
+            }
+    }
+
+    fun createBoard(activity: CreateBoardActivity, board: Board){
+        mFireStore.collection(Constants.BOARDS)
+            .document()
+            .set(board, SetOptions.merge())
+            .addOnSuccessListener {
+            Log.e(activity.javaClass.simpleName, "Board created successfully.")
+            Toast.makeText(activity, "Board created successfully.", Toast.LENGTH_SHORT).show()
+            activity.boardCreatedSuccessfully()
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while creating a board.",
                     e
                 )
             }

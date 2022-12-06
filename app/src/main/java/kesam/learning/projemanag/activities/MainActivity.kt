@@ -15,11 +15,15 @@ import kesam.learning.projemanag.databinding.ActivityMainBinding
 import kesam.learning.projemanag.databinding.NavHeaderMainBinding
 import kesam.learning.projemanag.firebase.FirestoreClass
 import kesam.learning.projemanag.models.User
+import kesam.learning.projemanag.utils.Constants
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private var binding: ActivityMainBinding? = null
+
+    // Create a global variable for user name
+    private lateinit var mUserName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +45,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         binding?.navView?.setNavigationItemSelectedListener(this)
 
+        // Get the current logged in user details.
+        FirestoreClass().loadUserData(this@MainActivity)
+
         binding?.appBarMainLayout?.fabCreateBoard?.setOnClickListener {
             val intent = Intent(this, CreateBoardActivity::class.java)
+            intent.putExtra(Constants.NAME, mUserName)
             startActivity(intent)
         }
 
-        // Get the current logged in user details.
-        FirestoreClass().loadUserData(this@MainActivity)
+
     }
 
     /**
@@ -111,6 +118,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     fun updateNavigationUserDetails(user: User){
+
+        // Initialize the UserName variable.
+        mUserName = user.name
+
         // The instance of the header view of the navigation view.
         val headerView = binding?.navView?.getHeaderView(0)
         //val headerView = nav_view.getHeaderView(0)
