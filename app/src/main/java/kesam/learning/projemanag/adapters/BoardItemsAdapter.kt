@@ -44,7 +44,7 @@ open class BoardItemsAdapter(
 
             holder.itemView.setOnClickListener {
                 if (onClickListener != null) {
-                    onClickListener!!.onClick(position, model)--
+                    onClickListener!!.onClick(position, model)
                 }
             }
         }
