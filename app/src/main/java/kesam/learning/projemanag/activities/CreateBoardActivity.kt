@@ -148,7 +148,7 @@ class CreateBoardActivity : BaseActivity() {
                         .load(Uri.parse(mSelectedImageFileUri.toString())) // URI of the image
                         .centerCrop() // Scale type of the image.
                         .placeholder(R.drawable.ic_board_place_holder) // A default place holder
-                        .into(it) // the view in which the image will be loaded. (Context: it = ivProfileUserImage)
+                        .into(it) // the view in which the image will be loaded. (Context: it = ivBoardImage)
                 }
             } catch (e: IOException) {
                 e.printStackTrace()
