@@ -195,12 +195,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             recyclerView?.adapter = adapter
             Log.i("POPUI:", "Board adapter size: ${adapter.itemCount}")
 
-            /*
             // divider
             val dividerItemDecoration =
                 DividerItemDecoration(recyclerView?.context, layoutManager.orientation)
             recyclerView?.addItemDecoration(dividerItemDecoration)
-             */
+
 
         } else {
             recyclerView?.visibility = View.GONE
