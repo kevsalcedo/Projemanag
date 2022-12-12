@@ -18,7 +18,7 @@
         android:padding="@dimen/item_board_content_padding">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_board_image"
+            android:id="@+id/iv_item_board_image"
             android:layout_width="@dimen/item_board_image_size"
             android:layout_height="@dimen/item_board_image_size"
             android:contentDescription="@string/image_contentDescription"
@@ -33,7 +33,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/primary_text_color"

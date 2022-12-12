@@ -1,19 +1,29 @@
 package kesam.learning.projemanag.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kesam.learning.projemanag.R
+import kesam.learning.projemanag.adapters.BoardItemsAdapter
 import kesam.learning.projemanag.databinding.ActivityMainBinding
 import kesam.learning.projemanag.databinding.NavHeaderMainBinding
 import kesam.learning.projemanag.firebase.FirestoreClass
+import kesam.learning.projemanag.models.Board
 import kesam.learning.projemanag.models.User
 import kesam.learning.projemanag.utils.Constants
 
@@ -24,6 +34,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     // Create a global variable for user name
     private lateinit var mUserName: String
+
+    private val boardLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        if(result.resultCode == Activity.RESULT_OK){
+            FirestoreClass().getBoardsList(this)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +62,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         binding?.navView?.setNavigationItemSelectedListener(this)
 
         // Get the current logged in user details.
-        FirestoreClass().loadUserData(this@MainActivity)
+        FirestoreClass().loadUserData(this@MainActivity, true)
 
         binding?.appBarMainLayout?.fabCreateBoard?.setOnClickListener {
             val intent = Intent(this, CreateBoardActivity::class.java)
             intent.putExtra(Constants.NAME, mUserName)
-            startActivity(intent)
+            //startActivityForResult(intent, Constants.CREATE_BOARD_REQUEST_CODE)
+            //startActivity(intent)
+            boardLauncher.launch(intent)
         }
 
 
@@ -117,7 +135,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
-    fun updateNavigationUserDetails(user: User){
+    fun updateNavigationUserDetails(user: User, readBoardsList: Boolean){
 
         // Initialize the UserName variable.
         mUserName = user.name
@@ -139,26 +157,55 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 .into(it)
         }
 
-
-        /*
-        // Load the user image in the ImageView.
-        Glide
-            .with(this@MainActivity)
-            .load(user.image) // URL of the image
-            .centerCrop() // Scale type of the image.
-            .placeholder(R.drawable.ic_user_place_holder) // A default place holder
-            .into(headerBinding) // the view in which the image will be loaded.
-
-         */
-
-
-
         headerBinding?.tvUsername?.text = user.name
+
+        // Here if the isToReadBoardList is TRUE then get the list of boards.
+        if (readBoardsList){
+            showProgressDialog(resources.getString(R.string.please_wait))
+            FirestoreClass().getBoardsList(this@MainActivity)
+        }
 
         // The instance of the user name TextView of the navigation view.
         //val navUsername = headerView?.findViewById<TextView>(R.id.tv_username)
         // Set the user name
         //navUsername?.text = user.name
+    }
+
+    /**
+     * A function to populate the result of BOARDS list in the UI i.e in the recyclerView.
+     */
+    fun populateBoardsListToUI(boardsList: ArrayList<Board>) {
+
+        hideProgressDialog()
+
+        val recyclerView = binding?.appBarMainLayout?.contentMainLayout?.rvBoardsList
+        val noBoardsAvailable = binding?.appBarMainLayout?.contentMainLayout?.tvNoBoardsAvailable
+
+        if (boardsList.size > 0) {
+            noBoardsAvailable?.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
+
+            // layout manager
+            val layoutManager = LinearLayoutManager(this)
+            recyclerView?.layoutManager = layoutManager
+            recyclerView?.setHasFixedSize(true)
+
+            // adapter
+            val adapter = BoardItemsAdapter(this, boardsList)
+            recyclerView?.adapter = adapter
+            Log.i("POPUI:", "Board adapter size: ${adapter.itemCount}")
+
+            /*
+            // divider
+            val dividerItemDecoration =
+                DividerItemDecoration(recyclerView?.context, layoutManager.orientation)
+            recyclerView?.addItemDecoration(dividerItemDecoration)
+             */
+
+        } else {
+            recyclerView?.visibility = View.GONE
+            noBoardsAvailable?.visibility = View.VISIBLE
+        }
     }
 
 

@@ -21,11 +21,16 @@ object Constants{
     const val NAME: String = "name"
     const val MOBILE: String = "mobile"
 
+    // Add a field name as assignedTo which we are gonna use later on
+    const val ASSIGNED_TO: String = "assignedTo"
+
     //A unique code for asking the Read Storage Permission using this we will be check and identify in the method onRequestPermissionsResult
     const val READ_STORAGE_PERMISSION_CODE = 1
 
     // Add a constant for image selection from phone storage
     const val PICK_IMAGE_REQUEST_CODE = 2
+
+    const val CREATE_BOARD_REQUEST_CODE: Int = 12
 
 
     /**

@@ -8,13 +8,15 @@ data class Board(
     val name: String = "",
     val image: String = "",
     val createdBy: String = "",
-    val assignedTo: ArrayList<String> = ArrayList() // can be multiple people
+    val assignedTo: ArrayList<String> = ArrayList(), // can be multiple people.
+    var documentId: String = "" // New parameter as document id in which we will store the document id of BOARD
 ) : Parcelable {
     constructor(source: Parcel) : this(
         source.readString()!!,
         source.readString()!!,
         source.readString()!!,
-        source.createStringArrayList()!!
+        source.createStringArrayList()!!,
+        source.readString()!!
     )
 
     override fun describeContents() = 0
@@ -24,6 +26,7 @@ data class Board(
         writeString(image)
         writeString(createdBy)
         writeStringList(assignedTo)
+        writeString(documentId)
     }
 
     companion object {

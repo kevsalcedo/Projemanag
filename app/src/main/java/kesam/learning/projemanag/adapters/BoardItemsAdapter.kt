@@ -32,14 +32,15 @@ open class BoardItemsAdapter(
         val model = list[position]
 
         if (holder is MyViewHolder){
+
             Glide
                 .with(context)
                 .load(model.image) // URI of the image
                 .centerCrop() // Scale type of the image.
                 .placeholder(R.drawable.ic_board_place_holder) // A default place holder
-                .into(holder.itemView.findViewById(R.id.iv_board_image)) // the view in which the image will be loaded.
+                .into(holder.itemView.findViewById(R.id.iv_item_board_image)) // the view in which the image will be loaded.
 
-            holder.itemView.findViewById<TextView>(R.id.tv_name).text = model.name
+            holder.itemView.findViewById<TextView>(R.id.tv_item_name).text = model.name
             holder.itemView.findViewById<TextView>(R.id.tv_created_by).text = "Created By : ${model.createdBy}"
 
             holder.itemView.setOnClickListener {
@@ -66,6 +67,9 @@ open class BoardItemsAdapter(
         this.onClickListener = onClickListener
     }
 
+    /**
+     * An interface for onclick items.
+     */
     interface OnClickListener {
         fun onClick(position: Int, model: Board)
     }
