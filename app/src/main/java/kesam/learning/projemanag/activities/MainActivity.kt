@@ -179,10 +179,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         hideProgressDialog()
 
         val recyclerView = binding?.appBarMainLayout?.contentMainLayout?.rvBoardsList
-        val noBoardsAvailable = binding?.appBarMainLayout?.contentMainLayout?.tvNoBoardsAvailable
+        //val noBoardsAvailable = binding?.appBarMainLayout?.contentMainLayout?.tvNoBoardsAvailable
 
         if (boardsList.size > 0) {
-            noBoardsAvailable?.visibility = View.GONE
             recyclerView?.visibility = View.VISIBLE
 
             // layout manager
@@ -200,10 +199,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 DividerItemDecoration(recyclerView?.context, layoutManager.orientation)
             recyclerView?.addItemDecoration(dividerItemDecoration)
 
+            //noBoardsAvailable?.visibility = View.GONE
+
+            // Add click event for boards item and launch the TaskListActivity
+            adapter.setOnClickListener(object :
+                BoardItemsAdapter.OnClickListener {
+                override fun onClick(position: Int, model: Board) {
+                    startActivity(Intent(this@MainActivity, TaskListActivity::class.java))
+                }
+            })
 
         } else {
             recyclerView?.visibility = View.GONE
-            noBoardsAvailable?.visibility = View.VISIBLE
+            //noBoardsAvailable?.visibility = View.VISIBLE
         }
     }
 
