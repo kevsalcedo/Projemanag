@@ -1,8 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    // TODO solve libraries mismatch
-    //id 'com.google.gms.google-services'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -44,14 +43,32 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    //Add the google material library. This library is auto-added when you create a basic activity instead of empty activity
+    // Google material library. This library is auto-added when you create a basic activity instead of empty activity
     implementation 'com.google.android.material:material:1.1.0'
 
     // Firebase Authentication dependency
     implementation "com.google.firebase:firebase-auth:19.2.0"
 
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:31.0.2')
+
     // Facebook for login
     implementation 'com.facebook.android:facebook-login:latest.release'
+
+    // Firebase Cloud Firestore Dependency
+    implementation 'com.google.firebase:firebase-firestore:21.4.0'
+
+    // circular image view dependency
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Image loading library
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // Firebase Storage Dependency
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
