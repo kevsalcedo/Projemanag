@@ -24,6 +24,9 @@ object Constants{
     // Add a field name as assignedTo which we are gonna use later on
     const val ASSIGNED_TO: String = "assignedTo"
 
+    // Add constant for DocumentId
+    const val DOCUMENT_ID: String = "documentId"
+
     //A unique code for asking the Read Storage Permission using this we will be check and identify in the method onRequestPermissionsResult
     const val READ_STORAGE_PERMISSION_CODE = 1
 

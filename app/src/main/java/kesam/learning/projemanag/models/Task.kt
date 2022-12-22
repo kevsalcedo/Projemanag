@@ -16,9 +16,9 @@ data class Task (
 
     override fun describeContents() = 0
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) = with(dest) {
-        writeString(title)
-        writeString(createdBy)
+    override fun writeToParcel(dest: Parcel?, flags: Int): Unit = with(dest) {
+        this?.writeString(title)
+        this?.writeString(createdBy)
 
     }
 
