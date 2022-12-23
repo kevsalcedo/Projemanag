@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import kesam.learning.projemanag.R
+import kesam.learning.projemanag.adapters.TaskListItemsAdapter
 import kesam.learning.projemanag.databinding.ActivityMyProfileBinding
 import kesam.learning.projemanag.databinding.ActivityTaskListBinding
 import kesam.learning.projemanag.firebase.FirestoreClass
 import kesam.learning.projemanag.models.Board
+import kesam.learning.projemanag.models.Task
 import kesam.learning.projemanag.utils.Constants
 
 class TaskListActivity : BaseActivity() {
@@ -69,7 +72,19 @@ class TaskListActivity : BaseActivity() {
 
         // Call the function to setup action bar.
         setupActionBar(board.name)
-        // END
+
+
+        // Here we are appending an item view for adding a list task list for the board.
+        val addTaskList = Task(resources.getString(R.string.add_list))
+        board.taskList.add(addTaskList)
+
+        binding?.rvTaskList?.layoutManager =
+            LinearLayoutManager(this@TaskListActivity, LinearLayoutManager.HORIZONTAL, false)
+        binding?.rvTaskList?.setHasFixedSize(true)
+
+        // Create an instance of TaskListItemsAdapter and pass the task list to it.
+        val adapter = TaskListItemsAdapter(this@TaskListActivity, board.taskList)
+        binding?.rvTaskList?.adapter = adapter // Attach the adapter to the recyclerView.
     }
 
 
