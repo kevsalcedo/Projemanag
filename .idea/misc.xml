@@ -7,7 +7,10 @@
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable-v24/ic_black_color_back_24dp.xml" value="0.1595" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable-v24/white_border_shape_button_rounded.xml" value="0.1425" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable-xhdpi/nav_header_main_background.xml" value="0.138" />
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable/ic_cancel.xml" value="0.1375" />
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable/ic_done.xml" value="0.1375" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/drawable/shape_button_rounded.xml" value="0.1425" />
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout-v23/item_task.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_base.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_create_board.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_intro.xml" value="0.4" />
@@ -22,6 +25,7 @@
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/dialog_progress.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/item_board.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/item_task.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/nav_header_main.xml" value="0.264" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/menu/activity_main_drawer.xml" value="0.24895833333333334" />
       </map>
