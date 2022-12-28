@@ -9,7 +9,6 @@ data class Card(
     val name: String = "",
     val createdBy: String = "",
     val assignedTo: ArrayList<String> = ArrayList()
-
 ): Parcelable {
     constructor(source: Parcel) : this(
         source.readString()!!,

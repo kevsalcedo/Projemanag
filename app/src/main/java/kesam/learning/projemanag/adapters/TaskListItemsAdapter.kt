@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kesam.learning.projemanag.R
 import kesam.learning.projemanag.activities.TaskListActivity
@@ -153,6 +154,13 @@ open class TaskListItemsAdapter(
                     }
                 }
             }
+
+            // Load the cards list in the recyclerView.
+            holder.itemView.findViewById<RecyclerView>(R.id.rv_card_list).layoutManager = LinearLayoutManager(context)
+            holder.itemView.findViewById<RecyclerView>(R.id.rv_card_list).setHasFixedSize(true)
+
+            val adapter = CardListItemsAdapter(context, model.cards)
+            holder.itemView.findViewById<RecyclerView>(R.id.rv_card_list).adapter = adapter
 
         }
     }
