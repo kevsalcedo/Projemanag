@@ -7,11 +7,13 @@ import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter.writeS
 
 data class Task (
     var title: String = "",
-    val createdBy: String = ""
+    val createdBy: String = "",
+    val cards: ArrayList<Card> = ArrayList()
 ): Parcelable {
     constructor(source: Parcel) : this(
         source.readString()!!,
-        source.readString()!!
+        source.readString()!!,
+        source.createTypedArrayList(Card.CREATOR)!!
     )
 
     override fun describeContents() = 0
@@ -19,7 +21,7 @@ data class Task (
     override fun writeToParcel(dest: Parcel?, flags: Int): Unit = with(dest) {
         this?.writeString(title)
         this?.writeString(createdBy)
-
+        this?.writeTypedList(cards)
     }
 
     companion object {

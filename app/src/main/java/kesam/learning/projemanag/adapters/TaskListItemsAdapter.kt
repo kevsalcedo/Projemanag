@@ -127,6 +127,33 @@ open class TaskListItemsAdapter(
                 alertDialogForDeleteList(position, model.title)
             }
 
+            // Add a click event for adding a card in the task list.
+            holder.itemView.findViewById<TextView>(R.id.tv_add_card).setOnClickListener {
+
+                holder.itemView.findViewById<TextView>(R.id.tv_add_card).visibility = View.GONE
+                holder.itemView.findViewById<CardView>(R.id.cv_add_card).visibility = View.VISIBLE
+
+                // Add a click event for closing the view for card add in the task list.
+                holder.itemView.findViewById<ImageButton>(R.id.ib_close_card_name).setOnClickListener {
+                    holder.itemView.findViewById<TextView>(R.id.tv_add_card).visibility = View.VISIBLE
+                    holder.itemView.findViewById<CardView>(R.id.cv_add_card).visibility = View.GONE
+                }
+
+                // Add a click event for adding a card in the task list.
+                holder.itemView.findViewById<ImageButton>(R.id.ib_done_card_name).setOnClickListener {
+
+                    val cardName = holder.itemView.findViewById<EditText>(R.id.et_card_name).text.toString()
+
+                    if (cardName.isNotEmpty()) {
+                        if (context is TaskListActivity) {
+                            context.addCardToTaskList(position, cardName)
+                        }
+                    }else{
+                        Toast.makeText(context, "Please Enter Card Detail.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
         }
     }
 
