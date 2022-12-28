@@ -76,7 +76,7 @@ open class TaskListItemsAdapter(
             // Add a click event for hiding the view for adding the task list name.
             holder.itemView.findViewById<ImageButton>(R.id.ib_close_list_name).setOnClickListener{
                 holder.itemView.findViewById<TextView>(R.id.tv_add_task_list).visibility = View.VISIBLE
-                holder.itemView.findViewById<TextView>(R.id.cv_add_task_list_name).visibility = View.GONE
+                holder.itemView.findViewById<CardView>(R.id.cv_add_task_list_name).visibility = View.GONE
             }
 
             // Add a click event for passing the task list name to the base activity function. To create a task list.

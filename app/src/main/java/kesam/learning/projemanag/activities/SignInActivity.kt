@@ -90,6 +90,7 @@ class SignInActivity : BaseActivity() {
                          */
 
                     } else {
+                        hideProgressDialog()
                         Toast.makeText(
                             this@SignInActivity,
                             "Authentication failed",
