@@ -15,6 +15,7 @@
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_create_board.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_intro.xml" value="0.4" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_members.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_my_profile.xml" value="0.2" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/activity_sing_in.xml" value="0.25" />
@@ -29,6 +30,7 @@
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/item_task.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/layout/nav_header_main.xml" value="0.264" />
         <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/menu/activity_main_drawer.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/KEVIN/AndroidStudioProjects/Projemanag/app/src/main/res/menu/manu_members.xml" value="0.24895833333333334" />
       </map>
     </option>
   </component>
