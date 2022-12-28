@@ -35,6 +35,9 @@ object Constants{
 
     const val CREATE_BOARD_REQUEST_CODE: Int = 12
 
+    // Add a new field for TaskList
+    const val TASK_LIST: String = "taskList"
+
 
     /**
      * A function for user profile image selection from phone storage.

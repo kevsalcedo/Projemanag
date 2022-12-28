@@ -5,11 +5,13 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import kesam.learning.projemanag.R
+import kesam.learning.projemanag.activities.TaskListActivity
 import kesam.learning.projemanag.models.Task
+import org.w3c.dom.Text
 
 // Create an adapter class for Task List Items in the TaskListActivity.
 open class TaskListItemsAdapter(
@@ -50,9 +52,10 @@ open class TaskListItemsAdapter(
      * layout file.
      */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is MyViewHolder) {
 
-            val addTaskList =
+        val model = list[position]
+
+        if (holder is MyViewHolder) {
 
             if (position == list.size - 1) {
 
@@ -61,6 +64,33 @@ open class TaskListItemsAdapter(
             } else {
                 holder.itemView.findViewById<TextView>(R.id.tv_add_task_list).visibility = View.GONE
                 holder.itemView.findViewById<LinearLayout>(R.id.ll_task_item).visibility = View.VISIBLE
+            }
+
+            // Add a click event for showing the view for adding the task list name. And also set the task list title name.
+            holder.itemView.findViewById<TextView>(R.id.tv_task_list_title).text = model.title
+            holder.itemView.findViewById<TextView>(R.id.tv_add_task_list).setOnClickListener{
+                holder.itemView.findViewById<TextView>(R.id.tv_add_task_list).visibility = View.GONE
+                holder.itemView.findViewById<CardView>(R.id.cv_add_task_list_name).visibility = View.VISIBLE
+            }
+
+            // Add a click event for hiding the view for adding the task list name.
+            holder.itemView.findViewById<ImageButton>(R.id.ib_close_list_name).setOnClickListener{
+                holder.itemView.findViewById<TextView>(R.id.tv_add_task_list).visibility = View.VISIBLE
+                holder.itemView.findViewById<TextView>(R.id.cv_add_task_list_name).visibility = View.GONE
+            }
+
+            // Add a click event for passing the task list name to the base activity function. To create a task list.
+            holder.itemView.findViewById<ImageButton>(R.id.ib_done_list_name).setOnClickListener {
+                val listName = holder.itemView.findViewById<EditText>(R.id.et_task_list_name).text.toString()
+
+                if (listName.isNotEmpty()) {
+                    // Here we check the context is an instance of the TaskListActivity.
+                    if (context is TaskListActivity) {
+                        context.createTaskList(listName)
+                    }
+                } else {
+                    Toast.makeText(context, "Please Enter List Name.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

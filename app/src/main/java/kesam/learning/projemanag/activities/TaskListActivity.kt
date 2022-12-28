@@ -3,6 +3,7 @@ package kesam.learning.projemanag.activities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,9 @@ import kesam.learning.projemanag.utils.Constants
 class TaskListActivity : BaseActivity() {
 
     private var binding: ActivityTaskListBinding? = null
+
+    // A global variable for Board Details.
+    private lateinit var mBoardDetails: Board
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +52,7 @@ class TaskListActivity : BaseActivity() {
         }
     }
 
-    private fun setupActionBar(title: String) {
+    private fun setupActionBar() {
 
         setSupportActionBar(binding?.toolbarTaskListActivity)
 
@@ -56,7 +60,7 @@ class TaskListActivity : BaseActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp)
-            actionBar.title = title
+            actionBar.title = mBoardDetails.name
         }
 
         binding?.toolbarTaskListActivity?.setNavigationOnClickListener {
@@ -68,10 +72,14 @@ class TaskListActivity : BaseActivity() {
      */
     fun boardDetails(board: Board) {
 
+        // Initialize and Assign the value to the global variable for Board Details.
+        // After replace the parameter variable with global so from onwards the global variable will be used.
+        mBoardDetails = board
+
         hideProgressDialog()
 
         // Call the function to setup action bar.
-        setupActionBar(board.name)
+        setupActionBar()
 
 
         // Here we are appending an item view for adding a list task list for the board.
@@ -85,6 +93,37 @@ class TaskListActivity : BaseActivity() {
         // Create an instance of TaskListItemsAdapter and pass the task list to it.
         val adapter = TaskListItemsAdapter(this@TaskListActivity, board.taskList)
         binding?.rvTaskList?.adapter = adapter // Attach the adapter to the recyclerView.
+    }
+
+    /**
+     * A function to get the result of add or updating the task list.
+     */
+    fun addUpdateTaskListSuccess() {
+
+        hideProgressDialog()
+
+        // Here get the updated board details.
+        // Show the progress dialog.
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getBoardDetails(this@TaskListActivity, mBoardDetails.documentId)
+    }
+
+    fun createTaskList(taskListName: String) {
+
+        Log.e("Task List Name", taskListName)
+
+        // Create and Assign the task details
+        val task = Task(taskListName, FirestoreClass().getCurrentUserID())
+
+        mBoardDetails.taskList.add(0, task) // Add task to the first position of ArrayList
+
+        // Remove the last position as we have added the item manually for adding the TaskList.
+        mBoardDetails.taskList.removeAt(mBoardDetails.taskList.size - 1)
+
+        // Show the progress dialog.
+        showProgressDialog(resources.getString(R.string.please_wait))
+
+        FirestoreClass().addUpdateTaskList(this@TaskListActivity, mBoardDetails)
     }
 
 
