@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import kesam.learning.projemanag.R
@@ -92,7 +93,71 @@ open class TaskListItemsAdapter(
                     Toast.makeText(context, "Please Enter List Name.", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            // Add a click event for iv_edit_list for showing the editable view.
+            holder.itemView.findViewById<ImageButton>(R.id.ib_edit_list_name).setOnClickListener {
+                holder.itemView.findViewById<EditText>(R.id.et_edit_task_list_name).setText(model.title) // Set the existing title
+                holder.itemView.findViewById<LinearLayout>(R.id.ll_title_view).visibility = View.GONE
+                holder.itemView.findViewById<CardView>(R.id.cv_edit_task_list_name).visibility = View.VISIBLE
+            }
+
+            // Add a click event for iv_close_editable_view for hiding the editable view.
+            // START
+            holder.itemView.findViewById<ImageButton>(R.id.ib_close_editable_view).setOnClickListener {
+                holder.itemView.findViewById<LinearLayout>(R.id.ll_title_view).visibility = View.VISIBLE
+                holder.itemView.findViewById<CardView>(R.id.cv_edit_task_list_name).visibility = View.GONE
+            }
+
+            // Add a click event for iv_edit_list for showing thr editable view.
+            holder.itemView.findViewById<ImageButton>(R.id.ib_done_edit_list_name).setOnClickListener {
+                val listName = holder.itemView.findViewById<EditText>(R.id.et_edit_task_list_name).text.toString()
+
+                if (listName.isNotEmpty()) {
+                    if (context is TaskListActivity) {
+                        context.updateTaskList(position, listName, model)
+                    }
+                } else {
+                    Toast.makeText(context, "Please Enter List Name.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // Add a click event for ib_delete_list for deleting the task list.
+            holder.itemView.findViewById<ImageButton>(R.id.ib_delete_list).setOnClickListener {
+
+                alertDialogForDeleteList(position, model.title)
+            }
+
         }
+    }
+
+    /**
+     * Method is used to show the Alert Dialog for deleting the task list.
+     */
+    private fun alertDialogForDeleteList(position: Int, title: String) {
+        val builder = AlertDialog.Builder(context)
+        //set title for alert dialog
+        builder.setTitle("Alert")
+        //set message for alert dialog
+        builder.setMessage("Are you sure you want to delete $title.")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+        //performing positive action
+        builder.setPositiveButton("Yes") { dialogInterface, which ->
+            dialogInterface.dismiss() // Dialog will be dismissed
+
+            if (context is TaskListActivity) {
+                context.deleteTaskList(position)
+            }
+        }
+
+        //performing negative action
+        builder.setNegativeButton("No") { dialogInterface, which ->
+            dialogInterface.dismiss() // Dialog will be dismissed
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false) // Will not allow user to cancel after clicking on remaining screen area.
+        alertDialog.show()  // show the dialog to UI
     }
 
     /**
@@ -113,6 +178,8 @@ open class TaskListItemsAdapter(
      */
     private fun Int.toPx(): Int =
         (this * Resources.getSystem().displayMetrics.density).toInt()
+
+
 
     /**
      * A ViewHolder describes an item view and metadata about its place within the RecyclerView.
